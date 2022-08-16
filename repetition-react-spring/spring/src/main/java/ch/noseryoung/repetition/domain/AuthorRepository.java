@@ -1,2 +1,8 @@
-package ch.noseryoung.repetition.domain;public class AuthorRepository {
+package ch.noseryoung.repetition.domain;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface AuthorRepository extends JpaRepository<Author, Integer> {
 }
