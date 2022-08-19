@@ -1,4 +1,4 @@
-package ch.noseryoung.repetition.domain;
+package ch.noseryoung.repetition.domain.author;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

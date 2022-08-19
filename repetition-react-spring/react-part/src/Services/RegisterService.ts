@@ -2,9 +2,9 @@ import {AxiosInstance} from "axios";
 import Api from "./Api";
 
 export const RegisterService = (api: AxiosInstance = Api) => ({
-    registerUser: async (email: string, password: string) => {
-        await api.post('register', {
-            email: email,
+    registerUser: async (username: string, password: string) => {
+        await api.post('user/', {
+            username: username,
             password: password
         })
             .then(function (response) {

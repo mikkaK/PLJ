@@ -6,6 +6,7 @@ import LogInPage from "./LogInPage";
 import RegisterPage from "./RegisterPage";
 import Navbar from "../Components/Navbar";
 import LandingPage from "./LandingPage";
+import AddPage from "./AddPage";
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                         <Route path="detail/:id" element={<DetailPage/>}/>
                         <Route path="register" element={<RegisterPage/>}/>
                         <Route path="login" element={<LogInPage/>}/>
+                        <Route path="add" element={<AddPage />}/>
                 </Routes>
             </BrowserRouter>
     );

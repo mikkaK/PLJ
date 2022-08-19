@@ -1,7 +1,8 @@
-package ch.noseryoung.repetition.domain;
+package ch.noseryoung.repetition.domain.author;
 
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -23,6 +24,7 @@ public class AuthorWeb {
 
     @Operation(summary = "Returns the author by id")
     @GetMapping("/{id}")
+    @PreAuthorize("(hasAuthority('readAuthors')) || hasRole('ADMIN') || hasRole('AUTHORADMIN')")
     public ResponseEntity<Author> find(@PathVariable("id") int id) throws InstanceNotFoundException {
         Author author = service.findById(id);
         return ResponseEntity.ok(author);
@@ -30,6 +32,7 @@ public class AuthorWeb {
 
     @Operation(summary = "Gives back all entries in authors table")
     @GetMapping
+    @PreAuthorize("(hasAuthority('readAuthors')) || hasRole('ADMIN') || hasRole('AUTHORADMIN')")
     public ResponseEntity<List<Author>> findAll() {
         List<Author> authors = service.findAll();
         return ResponseEntity.ok().body(authors);
@@ -37,6 +40,7 @@ public class AuthorWeb {
 
     @Operation(summary = "Creates new entry")
     @PostMapping("/")
+    @PreAuthorize("(hasAuthority('writeAuthor')) || hasRole('ADMIN') || hasRole('AUTHORADMIN')")
     public ResponseEntity<Author> newAuthor(@Valid @RequestBody Author author) throws InstanceAlreadyExistsException {
         Author created = service.create(author);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/id").buildAndExpand(created.getAuthorId()).toUri();
@@ -45,6 +49,7 @@ public class AuthorWeb {
 
     @Operation(summary = "Updates or creates Author entry based on existence")
     @PutMapping("/{id}")
+    @PreAuthorize("(hasAuthority('writeAuthor')) || hasRole('ADMIN') || hasRole('AUTHORADMIN')")
     public ResponseEntity<Author> update(@Valid @PathVariable int id, @RequestBody Author updatedAuthor) throws InstanceNotFoundException {
         Author updated = service.update(id, updatedAuthor);
         return ResponseEntity.ok().body(updated);
@@ -52,6 +57,7 @@ public class AuthorWeb {
 
     @Operation(summary = "Delete a specific Author")
     @DeleteMapping("/{id}")
+    @PreAuthorize("(hasAuthority('deleteAuthor')) || hasRole('ADMIN') || hasRole('AUTHORADMIN')")
     public ResponseEntity<Author> delete(@PathVariable("id") int id) throws InstanceNotFoundException {
         service.delete(id);
         return ResponseEntity.noContent().build();

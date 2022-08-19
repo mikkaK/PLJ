@@ -1,4 +1,4 @@
-package ch.noseryoung.repetition.domain;
+package ch.noseryoung.repetition.domain.author;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -29,6 +29,8 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.7.2'
 	implementation 'org.springframework.boot:spring-boot-starter-validation:2.7.2'
 	implementation 'org.springdoc:springdoc-openapi-ui:1.6.9'
+	implementation 'org.springframework.boot:spring-boot-starter-security:2.7.2'
+	implementation 'com.auth0:java-jwt:4.0.0'
 }
 
 tasks.named('test') {
